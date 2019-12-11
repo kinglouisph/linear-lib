@@ -12,7 +12,7 @@
 //functions
 //returns a line object from 2 points
 function getLineFromPoints(p1, p2) {
-  var slop = (p1[1] - p2[2]) / (p1[0] - p2[0]);
+  var slop = (p1[1] - p2[1]) / (p1[0] - p2[0]);
   return new Line(slop, p1[1] - (p1[0] * slop));
 }
 
