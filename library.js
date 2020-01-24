@@ -40,6 +40,18 @@ function Line(slope, yint) {
     var val = (line.yint - this.yint) / (this.slope - line.slope);
     return [val, this.eval(val)];
   };
+  
+  this.shapeIntercepts = function(shape) {
+    var list = [];
+    var returns = [];
+    for (var i = 0; i < shape.lines.length; i++) {
+      var vals = this.intercepts(shape.lines[i]);
+      for (var ii = 0; ii < vals.length; ii++) {
+        if (vals[ii][0] > Math.min(shape.points[i][0], shape.points[i + 1][0]) && vals[ii][0] < Math.max(shape.points[i][0], shape.points[i + 1][0])) {returns.push(vals[ii])}
+      }
+    }
+    return returns;
+  };
 }
 
 //shape made of points
