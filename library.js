@@ -40,18 +40,6 @@ function Line(slope, yint) {
     var val = (line.yint - this.yint) / (this.slope - line.slope);
     return [val, this.eval(val)];
   };
-  
-  this.shapeIntercepts = function(shape) {
-    var list = [];
-    var returns = [];
-    for (var i = 0; i < shape.lines.length; i++) {
-      var vals = this.intercepts(shape.lines[i]);
-      for (var ii = 0; ii < vals.length; ii++) {
-        if (vals[ii][0] > Math.min(shape.points[i][0], shape.points[i + 1][0]) && vals[ii][0] < Math.max(shape.points[i][0], shape.points[i + 1][0])) {returns.push(vals[ii])}
-      }
-    }
-    return returns;
-  };
 }
 
 //shape made of points
@@ -65,6 +53,7 @@ function Shape(points) {
     this.lines.push(getLineFromPoints(this.points[i], this.points[i + 1]));
   }
   
+  //return line intercepts with a line
   this.lineIntercepts = function(line) {
     var returns = [];
     for (var i in this.lines) {
@@ -73,11 +62,25 @@ function Shape(points) {
     return returns;
   };
   
+  //return line segment intercepts with a line
   this.intercepts = function(line) {
     var vals = this.lineIntercepts(line);
     var returns = [];
     for (var i = 0; i < vals.length; i++) {
       if (vals[i][0] > Math.min(this.points[i][0], this.points[i + 1][0]) && vals[i][0] < Math.max(this.points[i][0], this.points[i + 1][0])) {returns.push(vals[i])}
+    }
+    return returns;
+  };
+  
+  //return intercepts with another shape
+  this.shapeIntercepts = function(shape) {
+    var list = [];
+    var returns = [];
+    for (var i = 0; i < shape.lines.length; i++) {
+      var vals = this.intercepts(shape.lines[i]);
+      for (var ii = 0; ii < vals.length; ii++) {
+        if (vals[ii][0] > Math.min(shape.points[i][0], shape.points[i + 1][0]) && vals[ii][0] < Math.max(shape.points[i][0], shape.points[i + 1][0])) {returns.push(vals[ii])}
+      }
     }
     return returns;
   };
