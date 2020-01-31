@@ -1,8 +1,8 @@
 # linear-lib
 library for simple 2d geometry and linear equations, with collision detection.
 
-Features:
-  Shapes are objects made of points
-  Test if a shape intercepts with a point, line, or another shape
+Features:  
+  Shapes are objects made of points  
+  Test if a shape intercepts with a point, line, or another shape  
   Find a Shape's intercepts with a line or another shape
   
