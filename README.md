@@ -6,4 +6,5 @@ Features:
 .*Test if a shape intercepts with a point, line, or another shape  
 .*Find a Shape's intercepts with a line or another shape  
 
-To use, add: <script src="linear-lib/library.js"></script> before other script tags
+To use, first download and extract the zip to your project's root directory.
+Then add: <script src="linear-lib-master/library.js"></script> before the other script tags
